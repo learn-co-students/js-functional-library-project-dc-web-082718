@@ -5,8 +5,17 @@ fi = (function() {
     },
     //arrays and objects
     each: function(coll,cb) {
-            for(const key in coll){
-                cb(coll[key]);
+
+            let coll2 = [];
+            if(coll instanceof Array){
+                coll2 = coll.slice(0);
+            }
+            else{
+                coll2 = Object.values(coll);
+            }
+
+            for(const key in coll2){
+                cb(coll2[key]);
                 // {"a": 1, "b": {"1":[1,2,3]}}
             }
             return coll;
